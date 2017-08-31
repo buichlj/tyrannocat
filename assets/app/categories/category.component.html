@@ -1,0 +1,59 @@
+<h1>Categories</h1>
+<div class="category-lists">
+    <div class="account-category-list col-md-6">
+        <h3>Account Categories</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Parent Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = 'let accountCategory of accountCategories'>
+                    <td>{{ accountCategory.name }}</td>
+                    <td>{{ accountCategory.category ? accountCategory.category.name : "" }}</td>
+                    <td><button class="btn btn-danger" (click)=onAccountCategoryDelete(accountCategory.id)>Delete</button></td>
+                </tr>
+                <tr [hidden] = "hideAccountCategoryAdd">
+                    <td><input type="text" [(ngModel)]="newAccountCategoryName" class="form-control" placeholder="Category Name"/></td>
+                    <td>
+                        <select id="accountCategorySelect" [(ngModel)] = "parentAccountCategoryId" class="form-control">
+                            <option *ngFor= 'let accountCategory of accountCategories' value= '{{accountCategory.id}}'>{{ accountCategory.name }}</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-primary" (click)=onAccountCategorySubmit()>Save</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" [hidden]="!hideAccountCategoryAdd" (click)=showAccountCategoryAdd()>+</button>
+    </div>
+    <div class="transaction-category-list col-md-6">
+        <h3>Transaction Categories</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Parent Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = 'let transactionCategory of transactionCategories'>
+                    <td>{{ transactionCategory.name }}</td>
+                    <td>{{ transactionCategory.category ? transactionCategory.category.name : "" }}</td>
+                    <td><button class="btn btn-danger" (click)=onTransactionCategoryDelete(transactionCategory.id)>Delete</button></td>
+                </tr>
+                <tr [hidden] = "hideTransactionCategoryAdd">
+                    <td><input type="text" name="TransactionCategoryName" class="form-control" [(ngModel)]="newTransactionCategoryName" placeholder="Category Name"/></td>
+                    <td>
+                        <select id="transactionCategorySelect" [(ngModel)] = "parentTransactionCategoryId" class="form-control">
+                            <option *ngFor= 'let transactionCategory of transactionCategories' value= '{{transactionCategory.id}}'>{{ transactionCategory.name }}</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-primary" (click)=onTransactionCategorySubmit()>Save</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" [hidden]="!hideTransactionCategoryAdd" (click)=showTransactionCategoryAdd()>+</button>
+    </div> 
+</div>

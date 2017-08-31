@@ -1,0 +1,54 @@
+<div class="col-md-8 col-md-offset-2">
+    <label for="content">*This should only be used to make adjustments, use the file upload for entering data*</label>
+</div>
+<div class="col-md-12">
+    <div class="col-md-1 col-md-offset-1">
+        <h4>Date:</h4>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type="date" class="form-control" name="transactionDate" placeholder="Date" [(ngModel)]='date'>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <h4>Amount:</h4>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+            <input type="number" class="form-control" name="amount" placeholder="Amount" [(ngModel)]='amount'>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="col-md-1 col-md-offset-1">
+        <h4>Category:</h4>
+    </div>
+    <div class="col-md-3">
+         <select id="transactionCategorySelect" [(ngModel)] = "transactionCategoryId" class="form-control">
+            <option *ngFor= 'let transactionCategory of transactionCategories' value= '{{transactionCategory.id}}'>{{ transactionCategory.name }}</option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <h4>Account:</h4>
+    </div>
+    <div class="col-md-3">
+        <select id="accountSelect" [(ngModel)] = "accountId" class="form-control">
+            <option *ngFor= 'let account of accounts' value= '{{account.id}}'>{{ account.name }}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="col-md-1 col-md-offset-1">
+        <h4>Note:</h4>
+    </div>
+    <div class="col-md-5">
+            <textarea class="form-control" name="note" rows='7' [(ngModel)]='note'></textarea>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="col-md-offset-1">
+        <button class="btn btn-primary" (click)=onSubmit()>Submit</button>
+    </div>
+</div>

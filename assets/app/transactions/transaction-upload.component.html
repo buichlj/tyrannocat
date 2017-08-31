@@ -1,0 +1,38 @@
+<div class="col-md-12 col-md offset-0">
+    
+    <textarea name='text' [(ngModel)]="transactionText" cols="136" rows="10"></textarea>
+    
+    <label>Account</label>
+    <select id="test" [(ngModel)] = "account" class="form-control">
+        <option *ngFor= 'let account of accounts' value= '{{account.id}},{{account.name}}'>{{ account.name }}</option>
+    </select>
+    <br>
+    <button class="btn btn-primary" (click)="convert()">Okay</button>
+    <div class="transaction-edit" [hidden]="isHidden">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Note</th>
+                    <th>Category</th>
+                    <th>Account</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let transaction of transactions'>
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.note }}</td>
+                    <td>
+                        <select id="transactionCategorySelect" [(ngModel)] = "transaction.category" class="form-control">
+                            <option *ngFor= 'let transactionCategory of transactionCategories' value= '{{transactionCategory.id}}'>{{ transactionCategory.name }}</option>
+                        </select>
+                    </td>
+                    <td>{{ transaction.account.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class='btn btn-primary' (click)=onSubmit()>Submit</button>
+    </div>
+</div>

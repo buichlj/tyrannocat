@@ -1,0 +1,40 @@
+<h1>Accounts</h1>
+
+<div class="account-list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Parent Account</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let account of accounts'>
+                <td>{{ account.name }}</td>
+                <td>{{ account.category.name }}</td>
+                <td>{{ account.account ? account.account.name : "" }}</td>
+                <td>{{ account.amount }}</td>
+                <td><button class="btn btn-danger" (click)=onAccountDelete(account.id)>Delete</button>
+            </tr>
+            <tr [hidden] = "hideAccountAdd">
+                <td><input type="text" [(ngModel)]="newAccountName" class="form-control" name="accountName" placeholder="Account Name"/></td>
+                <td>
+                    <select id="accountCategorySelect" [(ngModel)] = "accountCategoryId" class="form-control">
+                        <option *ngFor= 'let accountCategory of accountCategories' value= '{{accountCategory.id}}'>{{ accountCategory.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="parentAccountSelect" [(ngModel)] = "parentAccountId" class="form-control">
+                        <option value="">None</option>
+                        <option *ngFor= 'let account of accounts' value= '{{account.id}}'>{{ account.name }}</option>
+                    </select>
+                </td>
+                <td><button class="btn btn-primary" (click)=onAccountSubmit()>Save</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button class="btn btn-primary" [hidden]="!hideAccountAdd" (click)=showAccountAdd()>+</button>
