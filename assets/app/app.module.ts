@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ChartModule } from 'angular2-highcharts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http';
 
@@ -27,7 +28,8 @@ import { CategoryComponent } from './categories/category.component'
         CategoryComponent
     ],
     imports: [
-        BrowserModule, 
+        BrowserModule,
+        ChartModule.forRoot(require('highcharts')),
         FormsModule, 
         routing, 
         ReactiveFormsModule,
